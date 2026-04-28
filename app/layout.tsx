@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "Point Freight Systems | Where every LOAD hits the POINT.",
   description:
     "Point Freight Systems delivers comprehensive ground transportation solutions. Your Freight. Our Focus. Always on POINT.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

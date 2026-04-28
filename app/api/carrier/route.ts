@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     const fullName = `${firstName} ${lastName}`.trim();
 
     await resend.emails.send({
-      from: "Point Freight Systems <noreply@pointfs.com>",
+      from: "Point Freight Systems <onboarding@resend.dev>",
       to: ["info@pointfs.com"],
       reply_to: email,
       subject: `New Carrier Partner Request from ${fullName}`,
@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
 
     // Confirmation to the applicant
     await resend.emails.send({
-      from: "Point Freight Systems <noreply@pointfs.com>",
+      from: "Point Freight Systems <onboarding@resend.dev>",
       to: [email],
       subject: "We received your carrier partner request",
       html: `

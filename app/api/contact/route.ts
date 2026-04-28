@@ -6,17 +6,17 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, phone, company, origin, destination, freight, message } = body;
+    const { fullName: name, email, phone, companyName: company, jobRole, country, reason, origin, destination } = body;
 
     if (!name || !email) {
       return NextResponse.json({ error: "Name and email are required" }, { status: 400 });
     }
 
     await resend.emails.send({
-      from: "Point Freight Systems <noreply@pointfs.com>",
+      from: "Point Freight Systems <onboarding@resend.dev>",
       to: ["info@pointfs.com"],
       reply_to: email,
-      subject: `New Freight Quote Request from ${name}`,
+      subject: `New Contact Message from ${name}`,
       html: `
         <div style="font-family: Inter, sans-serif; max-width: 600px; margin: 0 auto; background: #f9f9f9; padding: 0;">
           <!-- Header -->
@@ -60,6 +60,33 @@ export async function POST(req: NextRequest) {
                 </td>
                 <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
                   <span style="font-size: 15px; color: #032E5B;">${company}</span>
+                </td>
+              </tr>` : ""}
+              ${jobRole ? `
+              <tr>
+                <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                  <span style="font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.05em;">Job Role</span>
+                </td>
+                <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                  <span style="font-size: 15px; color: #032E5B;">${jobRole}</span>
+                </td>
+              </tr>` : ""}
+              ${country ? `
+              <tr>
+                <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                  <span style="font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.05em;">Country</span>
+                </td>
+                <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                  <span style="font-size: 15px; color: #032E5B;">${country}</span>
+                </td>
+              </tr>` : ""}
+              ${reason ? `
+              <tr>
+                <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                  <span style="font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.05em;">Reason</span>
+                </td>
+                <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                  <span style="font-size: 15px; color: #032E5B;">${reason}</span>
                 </td>
               </tr>` : ""}
               ${origin ? `
@@ -111,7 +138,7 @@ export async function POST(req: NextRequest) {
 
     // Send confirmation to requester
     await resend.emails.send({
-      from: "Point Freight Systems <noreply@pointfs.com>",
+      from: "Point Freight Systems <onboarding@resend.dev>",
       to: [email],
       subject: "We received your freight quote request",
       html: `

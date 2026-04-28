@@ -20,14 +20,15 @@ const stagger: Variants = {
 };
 
 // ── Figma MCP assets ──────────────────────────────────────────────────
-const imgTruckLeft    = "https://www.figma.com/api/mcp/asset/5f43c92a-7361-4d2c-936f-30194e8d3a33";
-const imgPersonRight1 = "https://www.figma.com/api/mcp/asset/d49c05db-8b12-41b2-8c16-5d8fef638b58";
-const imgPersonRight2 = "https://www.figma.com/api/mcp/asset/40ac3c04-32df-48c4-b392-1f1fc356c0da";
+const imgTruckLeft    = "/images/about-us-01.png";
+const imgPersonRight1 = "/images/about-us-02.png";
+const imgPersonRight2 = "";
 const imgDivider      = "https://www.figma.com/api/mcp/asset/bae325eb-4184-4c8b-8048-efae9ffc04ff";
 
 const features = [
   {
     title: "Fast Response",
+    icon: "solar:lightning-bold",
     body: (
       <>
         <p className="mb-0">Always on when you need us — real people, real support, 24/7.</p>
@@ -37,6 +38,7 @@ const features = [
   },
   {
     title: "Professional Drivers",
+    icon: "solar:user-check-bold",
     body: (
       <>
         <p className="mb-0">Only top-tier operators behind the wheel.</p>
@@ -46,6 +48,7 @@ const features = [
   },
   {
     title: "Right Equipment for Every Job",
+    icon: "solar:case-minimalistic-bold",
     body: (
       <>
         <p className="mb-0">The right assets, ready when your shipment is.</p>
@@ -55,6 +58,7 @@ const features = [
   },
   {
     title: "Security First",
+    icon: "solar:shield-check-bold",
     body: (
       <>
         <p className="mb-0">Your freight is protected at every step.</p>
@@ -64,6 +68,7 @@ const features = [
   },
   {
     title: "Ongoing Oversight",
+    icon: "solar:eye-bold",
     body: (
       <>
         <p className="mb-0">Visibility that never takes a break.</p>
@@ -73,6 +78,7 @@ const features = [
   },
   {
     title: "Complete Documentation",
+    icon: "solar:document-bold",
     body: (
       <>
         <p className="mb-0">Proof in hand, instantly.</p>
@@ -101,7 +107,7 @@ export default function AboutPage() {
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <p className="text-[#ED7426] text-xl font-semibold leading-normal">ABOUT US</p>
-            <h1 className="text-white text-[48px] font-semibold leading-none text-center w-[972px]">
+            <h1 className="text-white text-3xl sm:text-4xl md:text-[48px] font-semibold leading-[38px] sm:leading-[44px] md:leading-[48px] text-center w-full md:w-[972px]">
               From Quote to Delivery – POINT FREIGHT got your Shipping Needs covered.
             </h1>
           </motion.div>
@@ -114,7 +120,7 @@ export default function AboutPage() {
       <section className="bg-white py-24 pb-12">
         <div className="max-w-[1280px] mx-auto px-5 flex flex-col gap-10">
           <motion.h2
-            className="text-[#ED7426] text-[36px] font-semibold leading-normal w-[522px]"
+            className="text-[#ED7426] text-2xl sm:text-3xl md:text-[36px] font-semibold leading-[43px] w-full md:w-[522px]"
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
@@ -126,7 +132,7 @@ export default function AboutPage() {
           <div className="flex flex-col gap-5">
             {/* Row 1 */}
             <motion.div
-              className="flex gap-5"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
               variants={stagger}
               initial="hidden"
               whileInView="visible"
@@ -134,13 +140,13 @@ export default function AboutPage() {
             >
               {features.slice(0, 3).map((f) => (
                 <motion.div key={f.title} variants={fadeUp} className="flex-1">
-                  <FeatureCard title={f.title} body={f.body} />
+                  <FeatureCard title={f.title} body={f.body} icon={f.icon} />
                 </motion.div>
               ))}
             </motion.div>
             {/* Row 2 */}
             <motion.div
-              className="flex gap-5"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
               variants={stagger}
               initial="hidden"
               whileInView="visible"
@@ -148,7 +154,7 @@ export default function AboutPage() {
             >
               {features.slice(3).map((f) => (
                 <motion.div key={f.title} variants={fadeUp} className="flex-1">
-                  <FeatureCard title={f.title} body={f.body} />
+                  <FeatureCard title={f.title} body={f.body} icon={f.icon} />
                 </motion.div>
               ))}
             </motion.div>
@@ -179,9 +185,9 @@ export default function AboutPage() {
           </div>
 
           {/* Row 1: truck left + text right */}
-          <div className="flex gap-16 items-center">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-center">
             <motion.div
-              className="w-[588px] h-[640px] rounded-[16px] overflow-hidden flex-shrink-0 relative"
+              className="w-full sm:w-[588px] h-[300px] sm:h-[640px] rounded-[16px] overflow-hidden flex-shrink-0 relative"
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
@@ -206,7 +212,7 @@ export default function AboutPage() {
           </div>
 
           {/* Row 2: text left + image right */}
-          <div className="flex gap-16 items-center">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-center">
             <motion.div
               className="flex-1 flex flex-col gap-7 text-[#444] text-xl font-normal leading-[1.75]"
               initial={{ opacity: 0, x: -40 }}
@@ -232,7 +238,6 @@ export default function AboutPage() {
               viewport={{ once: true, amount: 0.3 }}
             >
               <img src={imgPersonRight1} alt="Logistics professional" className="absolute inset-0 w-full h-full object-cover" />
-              <img src={imgPersonRight2} alt="" className="absolute inset-0 w-full h-full object-cover" />
             </motion.div>
           </div>
         </div>
@@ -251,18 +256,17 @@ export default function AboutPage() {
             viewport={{ once: true }}
           >
             <div
-              className="w-full h-full rounded-[12px] flex flex-col items-center justify-center gap-7 px-[60px] py-[110px]"
-              style={{ background: "linear-gradient(252deg, #ED7326 7.92%, #FFA368 106.6%)" }}
+              className="w-full h-full rounded-[12px] flex flex-col items-center justify-center gap-7 px-5 py-10 sm:px-[60px] sm:py-[110px] bg-[#F5F5F5]"
             >
-              <h2 className="text-white text-[54px] font-bold leading-[1.2] text-center">
+              <h2 className="text-[#666666] text-3xl sm:text-4xl md:text-[54px] font-bold leading-[45px] sm:leading-[55px] md:leading-[65px] text-center">
                 Looking for a Reliable Shipping &amp; Transportation Partner?
               </h2>
               <button
                 onClick={() => setQuoteOpen(true)}
-                className="border border-white flex items-center gap-2.5 px-3.5 py-3 rounded-lg hover:bg-white/10 transition-colors"
+                className="border border-[#999999] flex items-center gap-2.5 px-3.5 py-3 rounded-lg hover:border-[#CCCCCC] transition-colors"
               >
-                <Icon icon="solar:hamburger-menu-bold" className="w-6 h-6 text-white flex-shrink-0" />
-                <span className="text-white text-sm font-medium whitespace-nowrap">GET A FREIGHT QUOTE</span>
+                <Icon icon="solar:hamburger-menu-bold" className="w-6 h-6 text-[#ED7426] flex-shrink-0" />
+                <span className="text-[#444] text-sm font-medium whitespace-nowrap">GET A FREIGHT QUOTE</span>
               </button>
             </div>
           </motion.div>
@@ -279,12 +283,14 @@ export default function AboutPage() {
 function FeatureCard({
   title,
   body,
+  icon,
 }: {
   title: string;
+  icon: string;
   body: React.ReactNode;
 }) {
   return (
-    <div className="border border-[#D9D9D9] rounded-[16px] p-12 h-full flex flex-col justify-between gap-10 overflow-hidden">
+    <div className="border border-[#D9D9D9] rounded-[16px] p-[48px] h-full flex flex-col justify-between gap-10 overflow-hidden">
       <div className="flex flex-col gap-5">
         {/* Gradient icon circle */}
         <div className="relative w-16 h-16 flex-shrink-0">
@@ -296,12 +302,12 @@ function FeatureCard({
             style={{ top: "6.72px", left: "7.11px", width: "49.78px", height: "50.96px" }}
           />
           {/* Icon */}
-          <Share2 className="absolute w-6 h-6 text-[#03395B]" style={{ top: "20px", left: "20px" }} />
+          <Icon icon={icon} className="absolute w-6 h-6 text-[#03395B]" style={{ top: "20px", left: "20px" }} />
         </div>
 
         <h3 className="text-[#03395B] text-[28px] font-semibold leading-[1.4]">{title}</h3>
       </div>
-      <div className="text-[#444] text-xl font-medium leading-[1.4]">{body}</div>
+      <div className="text-[#444] text-xl font-medium leading-[1.4] space-y-4">{body}</div>
     </div>
   );
 }

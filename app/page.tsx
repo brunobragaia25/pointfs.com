@@ -9,13 +9,11 @@ import Footer from "@/components/Footer";
 import QuoteModal from "@/components/QuoteModal";
 
 // ── Figma MCP assets ──────────────────────────────────────────────────
-const imgHeroFrame1   = "https://www.figma.com/api/mcp/asset/49778fd7-2ba2-4a61-ba24-c429f7b402ea";
-const imgHeroFrame2   = "https://www.figma.com/api/mcp/asset/17966790-a151-49bd-b54a-800a5c71161c";
-const imgShippers     = "https://www.figma.com/api/mcp/asset/869f8622-4f43-4550-a7de-3802781cf26a";
-const imgCarriers     = "https://www.figma.com/api/mcp/asset/192ee905-cf54-48b8-a0eb-8a1ee3252586";
-const imgTruck1       = "https://www.figma.com/api/mcp/asset/dc8d907e-882c-4253-afe3-891113b2b3f4";
-const imgTruck2       = "https://www.figma.com/api/mcp/asset/d0882578-bb45-44d3-952d-ef5cc8158d2a";
-const imgCircleDeco   = "https://www.figma.com/api/mcp/asset/0abd6043-cc43-4779-864e-6f0c2d8f0c75";
+const imgHeroFrame1   = "/images/image-hero.png";
+const imgShippers     = "/images/shippers.png";
+const imgCarriers     = "/images/foto-carriers.png";
+const imgTruck1       = "/images/foto-truck.png";
+const imgCircleDeco   = "/images/circles-hero.png";
 
 // ── Animation variants ─────────────────────────────────────────────────
 const fadeUp: Variants = {
@@ -25,7 +23,12 @@ const fadeUp: Variants = {
 
 const stagger: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
+  visible: { transition: { staggerChildren: 0.04 } },
+};
+
+const blurInTop: Variants = {
+  hidden: { opacity: 0, filter: "blur(10px)", y: -20 },
+  visible: { opacity: 1, filter: "blur(0px)", y: 0, transition: { duration: 0.15 } },
 };
 
 export default function HomePage() {
@@ -35,17 +38,15 @@ export default function HomePage() {
     <>
       <Navbar />
 
-      {/* ══════════════════════════════════════════
-          HERO — dark navy bg, centered text + aerial image
-      ══════════════════════════════════════════ */}
+      {/* ══ HERO ══════════════════════════════════════════════════════ */}
       <section className="relative bg-[#03395B] overflow-hidden">
         {/* Decorative concentric circles */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-          <img src={imgCircleDeco} alt="" className="absolute w-[2144px] h-[2144px] object-contain opacity-100 left-[-112px] top-0" />
+          <img src={imgCircleDeco} alt="" className="absolute w-[2144px] h-[2144px] object-contain top-[40px]" />
         </div>
 
-        {/* Text block — constrained */}
-        <div className="relative max-w-[1280px] mx-auto px-5 pt-24">
+        {/* Text block */}
+        <div className="relative max-w-[1280px] mx-auto px-5 pt-16 md:pt-24">
           <motion.div
             className="flex flex-col items-center gap-7 text-center"
             variants={stagger}
@@ -53,56 +54,66 @@ export default function HomePage() {
             animate="visible"
           >
             <motion.div className="flex flex-col items-center gap-4" variants={fadeUp}>
-              <h1 className="text-[#F3F3F3] text-[80px] font-extrabold leading-none w-[904px] text-center">
-                Where every LOAD hits the POINT.
-              </h1>
-              <p className="text-white text-2xl font-semibold leading-none">
+              <motion.h1
+                className="text-[#F3F3F3] text-2xl sm:text-4xl lg:text-[80px] font-extrabold leading-snug sm:leading-tight text-center max-w-[850px]"
+                style={{ lineHeight: "80px" }}
+                variants={stagger}
+                initial="hidden"
+                animate="visible"
+              >
+                {`Where every LOAD `.split('').map((char, i) => (
+                  <motion.span key={i} variants={blurInTop} className="inline-block">
+                    {char === ' ' ? '\u00A0' : char}
+                  </motion.span>
+                ))}
+                <br />
+                {`hits the POINT.`.split('').map((char, i) => (
+                  <motion.span key={`line2-${i}`} variants={blurInTop} className="inline-block">
+                    {char === ' ' ? '\u00A0' : char}
+                  </motion.span>
+                ))}
+              </motion.h1>
+              <p className="text-white text-base sm:text-xl lg:text-2xl font-semibold leading-none">
                 Your Freight. Our Focus. Always on POINT.
               </p>
             </motion.div>
-            <motion.div className="flex items-center gap-5" variants={fadeUp}>
-              <Link href="/carriers" className="bg-[#ED7426] text-white text-sm font-medium px-7 py-3 rounded-lg h-12 flex items-center justify-center w-[140px]">
-                CARRIERS
-              </Link>
-              <Link href="#shippers" className="bg-white text-black text-sm font-medium px-7 py-3 rounded-lg h-12 flex items-center justify-center w-[140px]">
+            <motion.div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 w-full sm:w-auto sm:justify-center" variants={fadeUp}>
+              <Link href="/shippers" className="bg-white text-black text-sm font-medium px-7 py-3 rounded-lg h-[50px] flex items-center justify-center w-full sm:w-[140px] hover:bg-transparent hover:border hover:border-white hover:text-white transition-colors">
                 SHIPPERS
+              </Link>
+              <Link href="/carriers" className="bg-[#ED7426] text-white text-sm font-medium px-7 py-3 rounded-lg h-[50px] flex items-center justify-center w-full sm:w-[140px] hover:bg-transparent hover:border hover:border-[#ED7426] hover:text-white transition-colors">
+                CARRIERS
               </Link>
             </motion.div>
           </motion.div>
         </div>
 
         {/* Photo + orange frame composite */}
-        <div className="relative w-full mt-[72px] flex justify-center items-end">
-
-          {/* Orange rectangle — behind photo, wider, aligned to bottom */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1240px] h-[440px] bg-white rounded-t-[20px] pt-3 px-3">
+        <div className="relative w-full mt-12 md:mt-[72px] flex justify-center items-end">
+          {/* Orange rectangle */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] md:w-[1240px] h-[200px] sm:h-[300px] md:h-[440px] bg-white rounded-t-[20px] pt-3 px-3">
             <div className="w-full h-full bg-[#ED7426] rounded-t-[12px]" />
           </div>
 
-          {/* Photo — on top */}
+          {/* Photo */}
           <motion.div
-            className="relative z-10 w-full max-w-[1062px] mx-5"
+            className="relative z-10 w-full max-w-[1062px] mx-2 sm:mx-5"
             initial={{ opacity: 0, y: 48 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           >
-            <div className="backdrop-blur-[46px] bg-white/20 rounded-t-[20px] pt-3 px-3 shadow-[0px_0px_53px_0px_rgba(0,0,0,0.08)]">
-              <div className="relative rounded-t-[12px] overflow-hidden w-full h-[498px]">
+            <div className="backdrop-blur-[46px] bg-white/20 rounded-t-[20px] pt-2 sm:pt-3 px-2 sm:px-3 shadow-[0px_0px_53px_0px_rgba(0,0,0,0.08)]">
+              <div className="relative rounded-t-[12px] overflow-hidden w-full h-[180px] sm:h-[340px] md:h-[498px]">
                 <img src={imgHeroFrame1} alt="" className="absolute inset-0 w-full h-full object-cover" />
-                <img src={imgHeroFrame2} alt="" className="absolute inset-0 w-full h-full object-cover" />
               </div>
             </div>
           </motion.div>
-
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════
-          WHAT WE DO
-      ══════════════════════════════════════════ */}
-      <section id="shippers" className="bg-white py-24">
+      {/* ══ WHAT WE DO ════════════════════════════════════════════════ */}
+      <section id="shippers" className="bg-white py-16 md:py-24">
         <div className="max-w-[1280px] mx-auto px-5 flex flex-col gap-8 items-center">
-          {/* Header */}
           <motion.div
             className="flex flex-col items-center gap-3 text-center w-full"
             variants={stagger}
@@ -110,13 +121,13 @@ export default function HomePage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <motion.p className="text-[#ED7426] text-xl font-semibold leading-normal" variants={fadeUp}>WHAT WE DO</motion.p>
-            <motion.h2 className="text-[#03395B] text-[48px] font-semibold leading-none text-center" variants={fadeUp}>
+            <motion.p className="text-[#ED7426] text-sm sm:text-lg lg:text-xl font-semibold leading-normal" variants={fadeUp}>WHAT WE DO</motion.p>
+            <motion.h2 className="text-[#03395B] text-xl sm:text-3xl md:text-[48px] font-semibold leading-none text-center" variants={fadeUp}>
               Over The Road Transportation Solutions
             </motion.h2>
           </motion.div>
           <motion.p
-            className="text-[#444] text-base font-normal leading-[1.75] text-center w-[630px]"
+            className="text-[#ED7426] text-base md:text-[18px] font-normal leading-[1.75] text-center max-w-[630px]"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -127,7 +138,7 @@ export default function HomePage() {
 
           {/* Cards */}
           <motion.div
-            className="flex gap-5 w-full"
+            className="flex flex-col md:flex-row gap-5 w-full"
             variants={stagger}
             initial="hidden"
             whileInView="visible"
@@ -135,31 +146,31 @@ export default function HomePage() {
           >
             {/* Shippers */}
             <motion.div className="flex flex-col gap-5 flex-1" variants={fadeUp}>
-              <div className="backdrop-blur-[46px] bg-white/20 rounded-[20px] p-3 shadow-[0px_0px_53px_0px_rgba(0,0,0,0.20)] h-[410px]">
-                <div className="rounded-[12px] overflow-hidden w-full h-full relative">
+              <div className="rounded-[20px] overflow-hidden h-[220px] sm:h-[340px] md:h-[410px]">
+                <div className="w-full h-full relative">
                   <img src={imgShippers} alt="Shippers" className="absolute inset-0 w-full h-full object-cover" />
                 </div>
               </div>
               <div className="flex flex-col gap-5">
-                <p className="text-[#03395B] text-[40px] font-semibold leading-normal">Shippers</p>
-                <button
-                  onClick={() => setQuoteOpen(true)}
+                <p className="text-[#03395B] text-xl sm:text-3xl md:text-[40px] font-semibold leading-normal">Shippers</p>
+                <Link
+                  href="/shippers"
                   className="self-start border border-[#444] text-[#444] text-sm font-medium px-5 py-2 rounded-full hover:bg-[#03395B] hover:text-white hover:border-[#03395B] transition-colors"
                 >
                   READ MORE
-                </button>
+                </Link>
               </div>
             </motion.div>
 
             {/* Carriers */}
             <motion.div className="flex flex-col gap-5 flex-1" variants={fadeUp}>
-              <div className="backdrop-blur-[46px] bg-white/20 rounded-[20px] p-3 shadow-[0px_0px_53px_0px_rgba(0,0,0,0.20)] h-[410px]">
-                <div className="rounded-[12px] overflow-hidden w-full h-full relative">
+              <div className="rounded-[20px] overflow-hidden h-[220px] sm:h-[340px] md:h-[410px]">
+                <div className="w-full h-full relative">
                   <img src={imgCarriers} alt="Carriers" className="absolute inset-0 w-full h-full object-cover" />
                 </div>
               </div>
               <div className="flex flex-col gap-5">
-                <p className="text-[#03395B] text-[40px] font-semibold leading-normal">Carriers</p>
+                <p className="text-[#03395B] text-xl sm:text-3xl md:text-[40px] font-semibold leading-normal">Carriers</p>
                 <Link
                   href="/carriers"
                   className="self-start border border-[#444] text-[#444] text-sm font-medium px-5 py-2 rounded-full hover:bg-[#03395B] hover:text-white hover:border-[#03395B] transition-colors"
@@ -172,14 +183,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════
-          ABOUT US — orange bg, text left + truck right
-      ══════════════════════════════════════════ */}
+      {/* ══ ABOUT US ══════════════════════════════════════════════════ */}
       <section className="relative bg-[#ED7426] overflow-hidden">
-        <div className="max-w-[1280px] mx-auto px-5 py-24 grid grid-cols-2 gap-0">
+        <div className="max-w-[1280px] mx-auto px-5 py-16 md:py-24 flex flex-col md:grid md:grid-cols-2 gap-0">
           {/* Text column */}
           <motion.div
-            className="flex flex-col gap-10 justify-center w-[630px]"
+            className="flex flex-col gap-10 justify-center"
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
@@ -187,7 +196,7 @@ export default function HomePage() {
           >
             <div className="flex flex-col gap-3">
               <p className="text-white text-xl font-semibold leading-normal">ABOUT US</p>
-              <h2 className="text-[#FFCCAD] text-[48px] font-semibold leading-none">
+              <h2 className="text-[#FFCCAD] text-3xl sm:text-4xl md:text-[48px] font-semibold leading-none">
                 Logistics Beyond Expectations
               </h2>
             </div>
@@ -204,62 +213,64 @@ export default function HomePage() {
             </div>
             <Link
               href="/about"
-              className="self-start bg-[#03395B] text-white text-sm font-medium px-7 py-3 rounded-lg h-12 flex items-center hover:bg-[#03395B]/90 transition-colors"
+              className="self-start bg-[#03395B] text-white text-sm font-medium px-7 py-3 rounded-lg h-[50px] flex items-center hover:bg-transparent hover:border hover:border-[#03395B] hover:text-white transition-colors"
             >
               KNOW MORE ABOUT US
             </Link>
           </motion.div>
         </div>
 
-        {/* Truck images — right side, absolute positioned */}
+        {/* Truck — hidden on mobile, absolute on desktop */}
         <motion.div
-          className="absolute right-0 top-0 w-[848px] h-full pointer-events-none"
+          className="hidden md:block absolute right-0 top-0 w-[848px] h-full pointer-events-none"
           initial={{ opacity: 0, x: 60 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.2 }}
         >
           <img src={imgTruck1} alt="Point Freight truck" className="absolute inset-0 w-full h-full object-cover" />
-          <img src={imgTruck2} alt="" className="absolute inset-0 w-full h-full object-cover" />
         </motion.div>
+
+        {/* Truck — visible on mobile, stacked below text */}
+        <div className="md:hidden w-full h-[260px] relative">
+          <img src={imgTruck1} alt="Point Freight truck" className="absolute inset-0 w-full h-full object-cover" />
+        </div>
       </section>
 
-      {/* ══════════════════════════════════════════
-          TALK WITH US
-      ══════════════════════════════════════════ */}
-      <section id="contact" className="bg-white py-24">
+      {/* ══ TALK WITH US ══════════════════════════════════════════════ */}
+      <section id="contact" className="bg-white py-16 md:py-24">
         <div className="max-w-[1280px] mx-auto px-5 flex flex-col gap-10">
           {/* Header row */}
           <motion.div
-            className="flex items-end justify-between w-full"
+            className="flex flex-col md:flex-row md:items-end md:justify-between w-full gap-6"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="flex flex-col gap-3 w-[542px]">
+            <div className="flex flex-col gap-3">
               <p className="text-[#ED7426] text-xl font-semibold leading-normal">TALK WITH US</p>
-              <h2 className="text-[#03395B] text-[48px] font-semibold leading-none w-[520px]">
+              <h2 className="text-[#03395B] text-3xl sm:text-4xl md:text-[48px] font-semibold leading-tight max-w-[500px]">
                 Transportation Beyond Expectations
               </h2>
             </div>
-            <div className="flex items-center gap-5 flex-shrink-0">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 flex-shrink-0">
               <button
                 onClick={() => setQuoteOpen(true)}
                 className="border border-[#949494] flex items-center gap-2.5 px-3.5 py-3 rounded-lg hover:border-[#ED7426] transition-colors"
               >
-                <Icon icon="solar:hamburger-menu-bold" className="w-6 h-6 text-[#444] flex-shrink-0" />
-                <span className="text-[#444] text-sm font-medium whitespace-nowrap">GET A FREIGHT QUOTE</span>
-              </button>
-              <button
-                onClick={() => setQuoteOpen(true)}
-                className="bg-[#03395B] text-white text-sm font-medium px-7 py-3 h-12 rounded-lg hover:bg-[#03395B]/90 transition-colors whitespace-nowrap"
-              >
-                SEND A DIRECT MESSAGE
+                <Icon icon="solar:hamburger-menu-bold" className="w-6 h-6 text-[#ED7426] flex-shrink-0" />
+                <span className="text-[#444] text-sm font-medium">GET A FREIGHT QUOTE</span>
               </button>
               <Link
-                href="/carriers"
-                className="bg-[#ED7426] text-white text-sm font-medium px-7 py-3 h-12 rounded-lg hover:bg-[#ED7426]/90 transition-colors whitespace-nowrap flex items-center"
+                href="/contact"
+                className="bg-[#03395B] text-white text-sm font-medium px-7 py-3 h-[50px] rounded-lg border border-[#03395B] hover:bg-transparent hover:text-gray-500 transition-colors flex items-center"
+              >
+                SEND A DIRECT MESSAGE
+              </Link>
+              <Link
+                href="/work-with-us"
+                className="bg-[#ED7426] text-white text-sm font-medium px-7 py-3 h-[50px] rounded-lg border border-[#ED7426] hover:bg-transparent hover:text-gray-500 transition-colors flex items-center"
               >
                 WORK WITH US
               </Link>
@@ -271,51 +282,57 @@ export default function HomePage() {
 
           {/* 3 contact cards */}
           <motion.div
-            className="flex w-full"
+            className="flex flex-col md:flex-row w-full"
             variants={stagger}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
           >
-            {/* Call Us — orange */}
-            <motion.div className="bg-[#ED7426] flex-1 p-10 flex flex-col justify-between h-[413px]" variants={fadeUp}>
+            {/* Call Us */}
+            <motion.div className="bg-[#ED7426] flex-1 p-8 md:p-10 flex flex-col justify-between min-h-[200px] md:h-[413px]" variants={fadeUp}>
               <div className="flex flex-col gap-5">
-                <Icon icon="solar:phone-bold" className="w-[54px] h-[54px] text-white" />
+                <div className="w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                  <Icon icon="solar:phone-bold" className="w-6 h-6 text-[#ED7426]" />
+                </div>
                 <p className="text-white text-2xl font-semibold leading-normal">Call Us</p>
               </div>
-              <a href="tel:8442047016" className="text-white text-2xl font-normal leading-normal w-[240px] hover:opacity-80">
+              <a href="tel:8442047016" className="text-white text-xl md:text-2xl font-normal leading-normal hover:opacity-80 mt-6 md:mt-0">
                 844-204-7016
               </a>
             </motion.div>
 
-            {/* Email Us — navy */}
-            <motion.div className="bg-[#03395B] flex-1 p-10 flex flex-col justify-between h-[413px]" variants={fadeUp}>
+            {/* Email Us */}
+            <motion.div className="bg-[#03395B] flex-1 p-8 md:p-10 flex flex-col justify-between min-h-[200px] md:h-[413px]" variants={fadeUp}>
               <div className="flex flex-col gap-5">
-                <Icon icon="solar:letter-bold" className="w-[54px] h-[54px] text-white" />
+                <div className="w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                  <Icon icon="solar:letter-bold" className="w-6 h-6 text-[#03395B]" />
+                </div>
                 <p className="text-white text-2xl font-semibold leading-normal">Email Us</p>
               </div>
-              <a href="mailto:info@pointfs.com" className="text-white text-2xl font-normal leading-normal w-[240px] hover:opacity-80">
+              <a href="mailto:info@pointfs.com" className="text-white text-xl md:text-2xl font-normal leading-normal hover:opacity-80 mt-6 md:mt-0">
                 info@pointfs.com
               </a>
             </motion.div>
 
-            {/* Locations — black */}
-            <motion.div className="bg-black flex-1 p-10 flex flex-col justify-between h-[413px]" variants={fadeUp}>
+            {/* Locations */}
+            <motion.div className="bg-[#F5F5F5] flex-1 p-8 md:p-10 flex flex-col justify-between min-h-[200px] md:h-[413px]" variants={fadeUp}>
               <div className="flex flex-col gap-5">
-                <Icon icon="solar:map-point-bold" className="w-[54px] h-[54px] text-white" />
-                <p className="text-white text-2xl font-semibold leading-normal">Locations</p>
+                <div className="w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                  <Icon icon="solar:map-point-bold" className="w-6 h-6 text-[#888]" />
+                </div>
+                <p className="text-[#444] text-2xl font-semibold leading-normal">Locations</p>
               </div>
-              <div className="flex flex-col gap-8 text-white text-base font-normal leading-normal">
-                <div>
+              <div className="flex flex-col gap-8 text-[#666] text-base font-normal leading-normal mt-6 md:mt-0">
+                <a href="https://www.google.com/maps/place/650+N+Sam+Houston+Pkwy+E+Suite+550,+Houston,+TX+77060" target="_blank" rel="noopener noreferrer" className="hover:text-[#03395B] transition-colors">
                   <p>Houston (HQ)</p>
                   <p>650 N Sam Houston Pkwy, E Suite 550</p>
                   <p>Houston TX, 77060</p>
-                </div>
-                <div>
+                </a>
+                <a href="https://www.google.com/maps/place/1+Chisholm+Trail+Road+Bldg+1+Suite+424,+Round+Rock,+Texas+78681" target="_blank" rel="noopener noreferrer" className="hover:text-[#03395B] transition-colors">
                   <p>Round Rock</p>
                   <p>1 Chisholm Trail Road, Bldg 1 Suite 424,</p>
                   <p>Round Rock, Texas, 78681</p>
-                </div>
+                </a>
               </div>
             </motion.div>
           </motion.div>

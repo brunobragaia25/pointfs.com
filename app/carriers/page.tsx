@@ -1,226 +1,151 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
+import { motion, type Variants } from "framer-motion";
+import { Icon } from "@iconify/react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-interface FormState {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  organization: string;
-  message: string;
-}
+// ── Figma MCP assets ──────────────────────────────────────────────────
+const imgTruckDriver = "/images/Truck driver on the road.png";
+const imgHandshake   = "/images/Business partnership handshake.png";
 
-const initialForm: FormState = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  organization: "",
-  message: "",
+// ── Animation variants ─────────────────────────────────────────────────
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
+const stagger: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+// ── Photo frame ────────────────────────────────────────────────────────
+function PhotoFrame({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="flex-shrink-0 w-full sm:w-[610px] h-[260px] sm:h-[480px] rounded-[20px] p-3 bg-white shadow-[0px_0px_53.2px_0px_rgba(0,0,0,0.15)]">
+      <div className="rounded-[12px] overflow-hidden w-full h-full">
+        <img src={src} alt={alt} className="w-full h-full object-cover" />
+      </div>
+    </div>
+  );
+}
+
 export default function CarriersPage() {
-  const [form, setForm] = useState<FormState>(initialForm);
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-
-  function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  }
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setStatus("loading");
-    try {
-      const res = await fetch("/api/carrier", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) {
-        setStatus("success");
-        setForm(initialForm);
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
-  }
 
   return (
     <>
       <Navbar />
 
-      <main className="bg-white min-h-screen py-20">
-        <div className="max-w-5xl mx-auto px-6 flex flex-col gap-10">
-          {/* Heading */}
-          <h1 className="text-4xl lg:text-5xl font-semibold text-navy leading-tight max-w-xs">
-            Be a Carrier Partner with Us
-          </h1>
+      {/* ══ HERO ══════════════════════════════════════════════════════ */}
+      <section className="bg-[#03395B] py-[120px]">
+        <motion.div
+          className="max-w-[1280px] mx-auto px-5 flex flex-col items-center gap-6 text-center"
+          variants={stagger}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.h1
+            className="text-4xl sm:text-5xl md:text-[64px] font-semibold text-white leading-tight"
+            variants={fadeUp}
+          >
+            Freight Carriers
+          </motion.h1>
+          <motion.p
+            className="text-xl sm:text-2xl md:text-[28px] font-semibold text-[#FFCCAD] leading-snug max-w-[560px]"
+            variants={fadeUp}
+          >
+            More loads, fewer empty miles, faster pay and top-tier support.
+          </motion.p>
+        </motion.div>
+      </section>
 
-          {/* Form card */}
-          <div className="border border-gray-300 rounded-2xl p-8 lg:p-16 flex flex-col gap-10">
-            {status === "success" ? (
-              <div className="flex flex-col items-center gap-6 py-8 text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-                  <svg
-                    width="32"
-                    height="32"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#16a34a"
-                    strokeWidth="2.5"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                </div>
-                <h2 className="text-navy text-2xl font-semibold">
-                  Message Sent!
-                </h2>
-                <p className="text-gray-500 max-w-md">
-                  Thanks for reaching out. Our team will contact you within 24
-                  hours to discuss your carrier partnership.
-                </p>
-                <button
-                  onClick={() => setStatus("idle")}
-                  className="bg-orange text-white text-sm font-medium px-6 py-3 rounded-lg hover:bg-orange/90 transition-colors"
-                >
-                  Send another message
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-10">
-                {/* Row 1: First + Last name */}
-                <div className="flex flex-col sm:flex-row gap-5">
-                  <Field
-                    label="First Name*"
-                    name="firstName"
-                    placeholder="Enter your first name"
-                    value={form.firstName}
-                    onChange={handleChange}
-                    required
-                  />
-                  <Field
-                    label="Last Name*"
-                    name="lastName"
-                    placeholder="Enter your last name"
-                    value={form.lastName}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+      {/* ══ SECTION 1 — image left, text right ════════════════════════ */}
+      <section className="bg-white">
+        <motion.div
+          className="max-w-[1280px] mx-auto px-5 py-20 flex flex-col md:flex-row items-center gap-16"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+        >
+          <motion.div variants={fadeUp} className="flex-shrink-0">
+            <PhotoFrame src={imgTruckDriver} alt="Truck driver on the road" />
+          </motion.div>
 
-                {/* Row 2: Email + Phone + Organization */}
-                <div className="flex flex-col sm:flex-row gap-5">
-                  <Field
-                    label="E-mail*"
-                    name="email"
-                    type="email"
-                    placeholder="Enter your e-mail"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                  />
-                  <Field
-                    label="Phone Number"
-                    name="phone"
-                    type="tel"
-                    placeholder="Enter your phone number"
-                    value={form.phone}
-                    onChange={handleChange}
-                  />
-                  <Field
-                    label="Organization Name"
-                    name="organization"
-                    placeholder="Enter your organization name"
-                    value={form.organization}
-                    onChange={handleChange}
-                  />
-                </div>
+          <motion.div className="flex flex-col gap-6 flex-1 min-w-0" variants={stagger}>
+            <motion.h2
+              className="text-[48px] font-semibold text-[#03395B] leading-tight"
+              variants={fadeUp}
+            >
+              Drive your Business Forward – FAST.
+            </motion.h2>
+            <motion.p
+              className="text-2xl text-[#444] leading-[1.75]"
+              variants={fadeUp}
+            >
+              Finding quality freight has never been easier. Partnering for
+              every mile with POINT FREIGHT you can keep your trucks rolling
+              and your business growing. With fresh loads added every day, the
+              road ahead is always open.
+            </motion.p>
+            <motion.div variants={fadeUp}>
+              <Link
+                href="/carriers/partner"
+                className="inline-flex items-center gap-2.5 border border-[#949494] rounded-lg px-3.5 py-3 text-sm font-medium text-[#444] hover:border-[#CCCCCC] transition-colors"
+              >
+                <Icon icon="solar:hamburger-menu-bold" className="w-6 h-6 text-[#03395B] flex-shrink-0" />
+                BECOME A PARTNER
+              </Link>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </section>
 
-                {/* Textarea */}
-                <div className="flex flex-col gap-4">
-                  <label className="text-sm font-semibold text-orange">
-                    Let us know how we can help
-                  </label>
-                  <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    placeholder="Send your message"
-                    rows={6}
-                    className="bg-[#e6e6e6] rounded-lg px-3 py-3.5 text-sm text-gray-700 placeholder:text-[#939393] focus:outline-none focus:ring-2 focus:ring-orange/30 focus:bg-white transition-colors resize-none w-full"
-                  />
-                </div>
+      <div className="max-w-[1280px] mx-auto px-5">
+        <div className="w-full h-px bg-[#D9D9D9]" />
+      </div>
 
-                {/* Divider */}
-                <hr className="border-gray-200" />
+      {/* ══ SECTION 2 — text left, image right ════════════════════════ */}
+      <section className="bg-white">
+        <motion.div
+          className="max-w-[1280px] mx-auto px-5 py-20 flex flex-col md:flex-row items-center gap-16"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+        >
+          <motion.div className="flex flex-col gap-6 flex-1 min-w-0" variants={stagger}>
+            <motion.p
+              className="text-2xl text-[#444] leading-[1.75]"
+              variants={fadeUp}
+            >
+              Our platform is available online and through our mobile app
+              providing carriers the agility to start shipment anytime,
+              anywhere. Partnership matters – and working with a reputable
+              freight broker adds a new level of reliability, consistence and
+              growth to your business.
+            </motion.p>
+            <motion.div variants={fadeUp}>
+              <Link
+                href="/carriers/partner"
+                className="inline-flex items-center gap-2.5 border border-[#949494] rounded-lg px-3.5 py-3 text-sm font-medium text-[#444] hover:border-[#CCCCCC] transition-colors"
+              >
+                <Icon icon="solar:hamburger-menu-bold" className="w-6 h-6 text-[#03395B] flex-shrink-0" />
+                BECOME A PARTNER
+              </Link>
+            </motion.div>
+          </motion.div>
 
-                {/* Error */}
-                {status === "error" && (
-                  <p className="text-red-500 text-sm -mt-6">
-                    Something went wrong. Please try again or call us at
-                    844-204-7016.
-                  </p>
-                )}
-
-                {/* Submit */}
-                <div className="flex justify-center">
-                  <button
-                    type="submit"
-                    disabled={status === "loading"}
-                    className="bg-orange text-white text-sm font-semibold px-8 py-3.5 rounded-lg hover:bg-orange/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed w-36"
-                  >
-                    {status === "loading" ? "Sending..." : "Let's Connect"}
-                  </button>
-                </div>
-              </form>
-            )}
-          </div>
-        </div>
-      </main>
+          <motion.div variants={fadeUp} className="flex-shrink-0">
+            <PhotoFrame src={imgHandshake} alt="Business partnership handshake" />
+          </motion.div>
+        </motion.div>
+      </section>
 
       <Footer />
+
     </>
-  );
-}
-
-interface FieldProps {
-  label: string;
-  name: string;
-  type?: string;
-  placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  required?: boolean;
-}
-
-function Field({
-  label,
-  name,
-  type = "text",
-  placeholder,
-  value,
-  onChange,
-  required,
-}: FieldProps) {
-  return (
-    <div className="flex flex-col gap-4 flex-1 min-w-0">
-      <label className="text-sm font-semibold text-orange">{label}</label>
-      <input
-        type={type}
-        name={name}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        required={required}
-        className="bg-[#e6e6e6] rounded-lg px-3 py-3.5 h-[53px] text-sm text-gray-700 placeholder:text-[#939393] focus:outline-none focus:ring-2 focus:ring-orange/30 focus:bg-white transition-colors w-full"
-      />
-    </div>
   );
 }

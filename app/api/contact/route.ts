@@ -107,15 +107,6 @@ export async function POST(req: NextRequest) {
                   <span style="font-size: 15px; color: #032E5B;">${destination}</span>
                 </td>
               </tr>` : ""}
-              ${freight ? `
-              <tr>
-                <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
-                  <span style="font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.05em;">Freight Type</span>
-                </td>
-                <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
-                  <span style="font-size: 15px; color: #032E5B;">${freight}</span>
-                </td>
-              </tr>` : ""}
             </table>
 
             ${message ? `

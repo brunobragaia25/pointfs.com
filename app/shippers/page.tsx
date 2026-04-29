@@ -31,7 +31,7 @@ const stagger: Variants = {
 // ── Photo frame component ──────────────────────────────────────────────
 function PhotoFrame({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="flex-shrink-0 w-full sm:w-[610px] h-[260px] sm:h-[480px] rounded-[20px] p-3 bg-white/20 backdrop-blur-[46px] shadow-[0px_0px_53.2px_0px_rgba(0,0,0,0.2)]">
+    <div className="flex-shrink-0 w-full sm:w-[610px] h-[350px] sm:h-[480px] rounded-[20px] p-3 bg-white/20 backdrop-blur-[46px] shadow-[0px_0px_53.2px_0px_rgba(0,0,0,0.2)]">
       <div className="rounded-[12px] overflow-hidden w-full h-full">
         <img src={src} alt={alt} className="w-full h-full object-cover" />
       </div>
@@ -67,7 +67,7 @@ function QuoteBtn() {
   return (
     <Link
       href="/request-quote"
-      className="mt-2 inline-flex items-center gap-2.5 border border-[#949494] rounded-lg px-3.5 py-3 text-sm font-medium text-[#444] hover:border-[#ED7426] transition-colors"
+      className="mt-2 w-full md:w-auto flex md:inline-flex items-center justify-center gap-2.5 border border-[#949494] rounded-lg px-3.5 py-3 text-sm font-medium text-[#444] hover:border-[#ED7426] transition-colors"
     >
       <Icon icon="solar:hamburger-menu-bold" className="w-6 h-6 text-[#ED7426] flex-shrink-0" />
       GET A FREIGHT QUOTE
@@ -78,6 +78,7 @@ function QuoteBtn() {
 // ── Service section ────────────────────────────────────────────────────
 interface ServiceProps {
   imageLeft?: boolean;
+  imageFirstOnMobile?: boolean;
   photo: React.ReactNode;
   heading: string;
   subtitle: string;
@@ -86,6 +87,7 @@ interface ServiceProps {
 
 function ServiceSection({
   imageLeft = false,
+  imageFirstOnMobile = false,
   photo,
   heading,
   subtitle,
@@ -93,7 +95,7 @@ function ServiceSection({
 }: ServiceProps) {
   return (
     <motion.div
-      className="max-w-[1280px] mx-auto px-5 py-8 sm:py-16 flex flex-col md:flex-row gap-4 sm:gap-8 md:gap-16 items-center"
+      className="max-w-[1280px] mx-auto px-5 py-8 sm:py-16 flex flex-col md:flex-row gap-6 sm:gap-8 md:gap-16 items-center"
       variants={stagger}
       initial="hidden"
       whileInView="visible"
@@ -105,21 +107,21 @@ function ServiceSection({
         </motion.div>
       )}
 
-      <motion.div className="flex flex-col gap-3 sm:gap-5 flex-1 min-w-0" variants={stagger}>
+      <motion.div className={`flex flex-col gap-3 sm:gap-5 flex-1 min-w-0 ${imageFirstOnMobile ? 'order-last md:order-none' : ''}`} variants={stagger}>
         <motion.h2
-          className="text-lg sm:text-2xl md:text-[44px] font-semibold text-[#03395B] leading-tight"
+          className="text-[28px] md:text-[44px] font-semibold text-[#03395B] leading-tight text-center md:text-left"
           variants={fadeUp}
         >
           {heading}
         </motion.h2>
         <motion.p
-          className="text-sm sm:text-lg md:text-2xl font-semibold text-[#ED7426] leading-snug"
+          className="text-[24px] md:text-2xl font-semibold text-[#ED7426] leading-snug text-center md:text-left"
           variants={fadeUp}
         >
           {subtitle}
         </motion.p>
         <motion.div
-          className="text-sm sm:text-base md:text-2xl text-[#444] leading-relaxed"
+          className="text-[16px] md:text-2xl text-[#444] leading-relaxed text-center md:text-left"
           variants={fadeUp}
         >
           {body}
@@ -130,7 +132,7 @@ function ServiceSection({
       </motion.div>
 
       {!imageLeft && (
-        <motion.div variants={fadeUp} className="flex-shrink-0">
+        <motion.div variants={fadeUp} className={`flex-shrink-0 ${imageFirstOnMobile ? 'order-first md:order-none' : ''}`}>
           {photo}
         </motion.div>
       )}
@@ -154,13 +156,13 @@ export default function ShippersPage() {
           animate="visible"
         >
           <motion.h1
-            className="text-2xl sm:text-4xl md:text-[64px] font-semibold text-white leading-tight max-w-[860px]"
+            className="text-[32px] sm:text-4xl md:text-[64px] font-semibold text-white leading-tight max-w-[860px]"
             variants={fadeUp}
           >
             Linking Every Load, Every Road, Reliable Carriers
           </motion.h1>
           <motion.p
-            className="text-sm sm:text-lg md:text-[28px] font-semibold text-[#FFCCAD] leading-snug"
+            className="text-[20px] md:text-[28px] font-semibold text-[#FFCCAD] leading-snug"
             variants={fadeUp}
           >
             We connect clients who have shipping needs with vetted carriers to transport any freight safely, transparently, and efficiently from origin to destination.
@@ -178,8 +180,7 @@ export default function ShippersPage() {
           viewport={{ once: true }}
         >
           <motion.h2
-            className="text-xl sm:text-3xl md:text-[48px] font-semibold text-[#03395B] leading-tight max-w-[900px]"
-            style={{ lineHeight: "58px" }}
+            className="text-[28px] md:text-[48px] font-semibold text-[#03395B] leading-[34px] md:leading-[58px] max-w-[900px]"
             variants={fadeUp}
           >
             Streamlined Freight Solutions Using Advanced Technology for Maximum Efficiency and Cost Savings
@@ -212,6 +213,7 @@ export default function ShippersPage() {
         {/* 1. Full Truckload (FTL) — text left, image right */}
         <div id="ftl">
           <ServiceSection
+            imageFirstOnMobile
             photo={<PhotoFrame src={imgFTL} alt="Full Truckload truck" />}
             heading="Full Truckload (FTL)"
             subtitle="Full Trailers are our specialty."
@@ -241,6 +243,7 @@ export default function ShippersPage() {
         {/* 3. LTL — text left, image right */}
         <div id="ltl">
           <ServiceSection
+            imageFirstOnMobile
             photo={<PhotoFrame src={imgLTL} alt="Less than Truckload freight" />}
             heading="Less than Truckload (LTL)"
             subtitle="Outgrown parcel shipping but don't need a full truck? LTL is your answer."
@@ -270,6 +273,7 @@ export default function ShippersPage() {
         {/* 5. Expedite — text left, image right */}
         <div id="expedite">
           <ServiceSection
+            imageFirstOnMobile
             photo={<PhotoFrame src={imgExpedite} alt="Expedited freight delivery" />}
             heading="Expedite"
             subtitle="Last-minute and fast delivery."
@@ -299,6 +303,7 @@ export default function ShippersPage() {
         {/* 7. Intermodal — text left, image right */}
         <div id="intermodal">
           <ServiceSection
+            imageFirstOnMobile
             photo={<PhotoFrame src={imgIntermodal} alt="Intermodal transport" />}
             heading="Intermodal"
             subtitle="Smooth transfers, secure shipments, simple solutions."

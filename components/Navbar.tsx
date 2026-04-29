@@ -63,25 +63,17 @@ export default function Navbar() {
     <header ref={headerRef} className="w-full z-50">
 
       {/* ── Orange top bar ── */}
-      <div className="bg-[#ED7426] h-10 w-full">
-        <div className="max-w-[1280px] mx-auto px-5 flex items-center justify-between h-full">
-          <div className="flex items-center gap-5">
-            <a href="mailto:info@pointfs.com" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
-              <Icon icon="solar:letter-bold" className="w-5 h-5 text-white flex-shrink-0" />
-              <span className="text-white text-xs font-medium leading-none">info@pointfs.com</span>
-            </a>
-            <div className="self-stretch w-px bg-white/40" />
-            <a href="tel:8442047016" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
-              <Icon icon="solar:phone-bold" className="w-4 h-4 text-white flex-shrink-0" />
-              <span className="text-white text-xs font-medium leading-none">844-204-7016</span>
-            </a>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-white text-xs font-medium">Follow us</span>
-            <a href="https://www.linkedin.com/company/point-freight-systems/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-7 h-7 rounded-full bg-[#03395B] flex items-center justify-center hover:opacity-80 transition-opacity">
-              <img src={imgSocial2} alt="" className="w-4 h-4" />
-            </a>
-          </div>
+      <div className="!w-screen bg-[#ED7426] h-10 flex items-center justify-between px-5">
+        <div className="flex items-center gap-5">
+          <a href="mailto:info@pointfs.com" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+            <Icon icon="solar:letter-bold" className="w-5 h-5 text-white flex-shrink-0" />
+            <span className="text-white text-xs font-medium leading-none">info@pointfs.com</span>
+          </a>
+          <div className="self-stretch w-px bg-white/40" />
+          <a href="tel:8442047016" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+            <Icon icon="solar:phone-bold" className="w-4 h-4 text-white flex-shrink-0" />
+            <span className="text-white text-xs font-medium leading-none">844-204-7016</span>
+          </a>
         </div>
       </div>
 

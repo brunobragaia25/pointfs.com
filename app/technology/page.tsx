@@ -13,6 +13,9 @@ const imgMobility    = "/images/mobile app screen 1.png";
 const imgMobilityTwo = "/images/mobile app screen 2.png";
 const imgSimplicity  = "/images/mobile app screen 3.png";
 const imgPerf        = "/images/Perfomance-dashboard.png";
+const imgMobilityDesktop = "/images/iphones-laranja-desktop.png";
+const imgSimplicityDesktop = "/images/iphone-azul-desktop.png";
+const imgPerfDesktop = "/images/tela-laranja-desktop.png";
 
 // ── Animation variants ─────────────────────────────────────────────────
 const fadeUp: Variants = {
@@ -43,8 +46,8 @@ function FeatureCard({ title, body, icon }: { title: string; body: string; icon:
       </div>
 
       <div className="flex flex-col gap-4">
-        <h3 className="text-[28px] font-semibold text-[#03395B] leading-[1.4]">{title}</h3>
-        <p className="text-xl font-medium text-[#444] leading-[1.4]">{body}</p>
+        <h3 className="text-[20px] font-semibold text-[#03395B] leading-[1.4]">{title}</h3>
+        <p className="text-[16px] font-medium text-[#444] leading-[1.4]">{body}</p>
       </div>
     </motion.div>
   );
@@ -86,8 +89,7 @@ export default function TechnologyPage() {
           viewport={{ once: true }}
         >
           <motion.h2
-            className="text-3xl sm:text-4xl md:text-[48px] font-semibold text-[#03395B] max-w-[1148px]"
-            style={{ lineHeight: "58px" }}
+            className="text-[28px] md:text-[48px] font-semibold text-[#03395B] max-w-[1148px] leading-[38px] md:leading-[58px]"
             variants={fadeUp}
           >
             Boost productivity and keep your freight moving seamlessly with
@@ -124,16 +126,16 @@ export default function TechnologyPage() {
       </section>
 
       {/* ══ MOBILITY ══════════════════════════════════════════════════ */}
-      <section className="bg-white py-20 overflow-hidden">
+      <section className="bg-white py-12 md:py-10">
         <motion.div
-          className="max-w-[1280px] mx-auto px-5 flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-16"
+          className="max-w-[1280px] mx-auto px-5 flex flex-col md:flex-row items-center justify-center md:items-center md:justify-center gap-8 md:gap-16"
           variants={stagger}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
         >
           {/* Text */}
-          <motion.div className="flex flex-col gap-5 flex-1 min-w-0" variants={stagger}>
+          <motion.div className="flex flex-col gap-5 flex-1 min-w-0 text-center md:text-left" variants={stagger}>
             <motion.p
               className="text-xl sm:text-2xl md:text-[32px] font-bold text-[#03395B] tracking-[0.4em] uppercase"
               variants={fadeUp}
@@ -147,7 +149,7 @@ export default function TechnologyPage() {
               Ship Smarter. Ship Faster
             </motion.h2>
             <motion.p
-              className="text-2xl text-[#444] leading-[1.75]"
+              className="text-[16px] md:text-2xl text-[#444] leading-[1.75]"
               variants={fadeUp}
             >
               Receive your load by SMS link or identify the load and swipe to
@@ -155,60 +157,21 @@ export default function TechnologyPage() {
             </motion.p>
           </motion.div>
 
-          {/* Phone mockups with orange background */}
+          {/* Image - All versions */}
           <motion.div
-            className="relative w-full sm:w-[540px] h-[300px] sm:h-[640px] flex-shrink-0"
+            className="flex-1 flex-shrink-0"
             variants={fadeUp}
           >
-            {/* Orange background */}
-            <div className="absolute bg-[#ED7326] h-[640px] rounded-[16px] top-0 w-[540px]" />
-
-            {/* Cards container */}
-            <div className="absolute inset-0 flex gap-[14px] items-center justify-center">
-              {/* Phone 1 */}
-              <div className="backdrop-blur-[32px] bg-[rgba(255,255,255,0.2)] flex h-[535px] items-center justify-center p-[8px] relative rounded-[35px] shadow-[0px_0px_37px_0px_rgba(0,0,0,0.2)] shrink-0 w-[301px]">
-                <div className="flex-1 h-full relative rounded-[28px]">
-                  <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[28px]">
-                    <img alt="Mobile app screen 1" className="absolute inset-0 w-full h-full object-contain" src={imgMobility} />
-                  </div>
-                </div>
-              </div>
-              {/* Phone 2 */}
-              <div className="backdrop-blur-[32px] bg-[rgba(255,255,255,0.2)] flex h-[535px] items-center justify-center p-[8px] relative rounded-[35px] shadow-[0px_0px_37px_0px_rgba(0,0,0,0.2)] shrink-0 w-[301px]">
-                <div className="flex-1 h-full relative rounded-[28px]">
-                  <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[28px]">
-                    <img alt="Mobile app screen 2" className="absolute inset-0 w-full h-full object-contain" src={imgMobilityTwo} />
-                  </div>
-                </div>
-              </div>
-            </div>
+            <img src={imgMobilityDesktop} alt="Mobile app screens" className="w-full h-auto object-contain" />
           </motion.div>
         </motion.div>
       </section>
 
       {/* ══ SIMPLICITY ════════════════════════════════════════════════ */}
-      <section className="bg-white py-20 overflow-hidden mb-20">
-        <motion.div
-          className="max-w-[1280px] mx-auto px-5 flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-16"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-        >
-          {/* App screenshot with blue background */}
-          <motion.div
-            className="flex-shrink-0 relative w-full sm:w-[540px] h-[300px] sm:h-[640px] rounded-[16px] bg-[#03395B] flex items-center justify-center"
-            variants={fadeUp}
-          >
-            <div className="w-[426px] h-[757px] rounded-[50px] p-[12px] bg-white/20 backdrop-blur-[46px] shadow-[0px_0px_53px_0px_rgba(0,0,0,0.2)] overflow-hidden">
-              <div className="w-full h-full rounded-[40px] overflow-hidden">
-                <img src={imgSimplicity} alt="App screenshot" className="w-full h-full object-cover" />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Text */}
-          <motion.div className="flex flex-col gap-5 flex-1 min-w-0" variants={stagger}>
+      <section className="bg-white py-12 md:py-10 mb-12 md:mb-0">
+        <div className="max-w-[1280px] mx-auto px-5 flex flex-col gap-16 md:flex-row-reverse md:gap-16 md:items-center md:justify-center">
+          {/* Text Section */}
+          <motion.div className="flex flex-col gap-5 flex-1 min-w-0 text-center md:text-left" variants={stagger}>
             <motion.p
               className="text-xl sm:text-2xl md:text-[32px] font-bold text-[#03395B] tracking-[0.4em] uppercase"
               variants={fadeUp}
@@ -216,7 +179,7 @@ export default function TechnologyPage() {
               SIMPLICITY
             </motion.p>
             <motion.p
-              className="text-2xl text-[#444] leading-[1.75]"
+              className="text-[16px] md:text-2xl text-[#444] leading-[1.75]"
               variants={fadeUp}
             >
               One place to receive cargo and appointment details, view stop
@@ -224,13 +187,21 @@ export default function TechnologyPage() {
               pictures, exchange messages with translator assistance anytime.
             </motion.p>
           </motion.div>
-        </motion.div>
+
+          {/* Image - All versions */}
+          <motion.div
+            className="flex-1 flex-shrink-0"
+            variants={fadeUp}
+          >
+            <img src={imgSimplicityDesktop} alt="App screenshot" className="w-full h-auto object-contain" />
+          </motion.div>
+        </div>
       </section>
 
       {/* ══ PERFORMANCE ═══════════════════════════════════════════════ */}
-      <section className="bg-white py-20 mt-20 mb-20">
+      <section className="bg-white py-12 md:py-10 mt-12 md:mt-10 mb-20">
         <motion.div
-          className="max-w-[1280px] mx-auto px-5 flex flex-col gap-10 overflow-visible"
+          className="max-w-[1280px] mx-auto px-5 flex flex-col gap-10 md:gap-10 overflow-visible"
           variants={stagger}
           initial="hidden"
           whileInView="visible"
@@ -245,7 +216,7 @@ export default function TechnologyPage() {
               PERFORMANCE
             </motion.p>
             <motion.p
-              className="text-2xl text-[#444] leading-[1.75]"
+              className="text-[16px] md:text-2xl text-[#444] leading-[1.75]"
               variants={fadeUp}
             >
               Operation dashboard displaying in real time what matters — route,
@@ -254,21 +225,10 @@ export default function TechnologyPage() {
             </motion.p>
           </motion.div>
 
-          {/* Dashboard screenshot — orange block behind, glassmorphism frame in front */}
+          {/* Dashboard screenshot - All versions */}
           <motion.div className="relative w-full flex justify-center" variants={fadeUp}>
-            {/* Container for positioning */}
-            <div className="relative w-full max-w-[1152px] px-5 overflow-visible">
-              {/* Orange block: 1000×682.5px (behind) */}
-              <div className="absolute bg-[#ED7326] h-[682.5px] rounded-[16px] left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[1000px] z-0" />
-
-              {/* Glassmorphism card (in front) */}
-              <div className="relative flex justify-center py-[70px] z-10 overflow-visible">
-                <div className="backdrop-blur-[46px] bg-white/20 flex items-center justify-center p-3 rounded-[50px] shadow-[0px_0px_53px_0px_rgba(0,0,0,0.2)] w-full h-[543px] overflow-visible">
-                  <div className="w-full h-full relative rounded-[40px] overflow-visible">
-                    <img alt="Performance dashboard" className="w-full h-full object-cover rounded-[40px]" src={imgPerf} />
-                  </div>
-                </div>
-              </div>
+            <div className="w-full max-w-[1152px]">
+              <img src={imgPerfDesktop} alt="Performance dashboard" className="w-full h-auto object-contain" />
             </div>
           </motion.div>
         </motion.div>

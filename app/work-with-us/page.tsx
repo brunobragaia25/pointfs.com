@@ -181,14 +181,14 @@ export default function WorkWithUsPage() {
           animate="visible"
         >
           <motion.p
-            className="text-xl font-semibold text-[#ED7426] uppercase tracking-wide"
+            className="text-[16px] md:text-xl font-semibold text-[#ED7426] uppercase tracking-wide"
             variants={fadeUp}
           >
             JOIN US ON THE NEXT MILE
           </motion.p>
           <motion.h1
             className="text-3xl sm:text-4xl md:text-[48px] font-semibold text-[#03395B] max-w-[764px]"
-            style={{ lineHeight: "58px" }}
+            style={{ lineHeight: "48px" }}
             variants={fadeUp}
           >
             MOVING YOUR WAY to POINT FREIGHT TEAM

@@ -126,18 +126,18 @@ export default function RequestQuotePage() {
           animate="visible"
         >
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-[48px] font-semibold text-[#03395B] leading-tight"
+            className="text-[40px] sm:text-4xl md:text-[48px] font-semibold text-[#03395B] leading-tight"
             variants={fadeUp}
           >
             Request a Freight Quote
           </motion.h1>
           <motion.div className="flex items-end gap-2 pb-2" variants={fadeUp}>
-            <span className="text-2xl font-bold text-[#444] text-right">
+            <span className="text-[16px] md:text-2xl font-bold text-[#444] text-right">
               Be PFS partner carrier
             </span>
             <Link
               href="/carriers/partner"
-              className="text-2xl font-medium text-[#ED7426] underline underline-offset-2 hover:opacity-80 transition-opacity"
+              className="text-[16px] md:text-2xl font-medium text-[#ED7426] underline underline-offset-2 hover:opacity-80 transition-opacity"
             >
               Click here
             </Link>
@@ -266,7 +266,7 @@ export default function RequestQuotePage() {
                 <label className="text-sm font-semibold text-[#ED7426]">
                   Shipment Type*
                 </label>
-                <div className="border border-[#949494] rounded-[8px] p-10 flex items-center justify-between flex-wrap">
+                <div className="border border-[#949494] rounded-[8px] p-10 flex flex-col md:flex-row md:items-center md:justify-between flex-wrap gap-5 md:gap-0">
                   {SHIPMENT_TYPES.map((type) => (
                     <button
                       key={type}
@@ -325,7 +325,7 @@ export default function RequestQuotePage() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="bg-[#ED7426] text-white text-sm font-semibold w-[140px] h-[53px] rounded-[8px] hover:bg-[#ED7426]/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="bg-[#ED7426] text-white text-sm font-semibold w-full h-[53px] rounded-[8px] hover:bg-[#ED7426]/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {status === "loading" ? "Sending..." : "Get Quote"}
                 </button>

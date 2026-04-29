@@ -14,7 +14,7 @@ export default function Footer() {
           <div className="flex flex-col gap-7">
             <img src={imgLogo} alt="Point Freight Systems" className="w-[144px] h-[53px] object-contain" />
             <div className="flex flex-col gap-8">
-              <p className="text-[#ED7426] text-2xl md:text-[40px] font-bold leading-none">
+              <p className="text-[#ED7426] text-[32px] md:text-[40px] font-bold leading-none">
                 Where every LOAD hits the POINT.
               </p>
               <p className="text-white text-base font-medium leading-[1.4]">
@@ -118,8 +118,8 @@ export default function Footer() {
         <div className="max-w-[1280px] mx-auto px-5 w-full flex items-center justify-between">
           <p className="text-white/40 text-xs">© {new Date().getFullYear()} Point Freight Systems. All rights reserved.</p>
           <div className="flex items-center gap-5">
-            <Link href="/privacy" className="text-white/40 text-xs hover:text-white/70 transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="text-white/40 text-xs hover:text-white/70 transition-colors">Terms &amp; Conditions</Link>
+            <Link href="/privacy" className="hidden md:inline text-white/40 text-xs hover:text-white/70 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hidden md:inline text-white/40 text-xs hover:text-white/70 transition-colors">Terms &amp; Conditions</Link>
           </div>
         </div>
       </div>

@@ -110,7 +110,7 @@ export default function CarrierPartnerPage() {
         >
           {/* Page title */}
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-[48px] font-semibold text-[#03395B] leading-tight"
+            className="text-3xl sm:text-4xl md:text-[48px] font-semibold text-[#03395B] leading-tight text-center md:text-left"
             variants={fadeUp}
           >
             Be a Carrier Partner with Us
@@ -242,7 +242,7 @@ export default function CarrierPartnerPage() {
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="bg-[#ED7426] text-white text-sm font-semibold w-[140px] h-[53px] rounded-[8px] hover:bg-[#ED7426]/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="bg-[#ED7426] text-white text-sm font-semibold w-full md:w-[140px] h-[53px] rounded-[8px] hover:bg-[#ED7426]/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {status === "loading" ? "Sending..." : "Let's Connect"}
                   </button>

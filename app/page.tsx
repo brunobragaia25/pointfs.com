@@ -55,25 +55,16 @@ export default function HomePage() {
           >
             <motion.div className="flex flex-col items-center gap-4" variants={fadeUp}>
               <motion.h1
-                className="text-[#F3F3F3] text-2xl sm:text-4xl lg:text-[80px] font-extrabold leading-snug sm:leading-tight text-center max-w-[850px]"
-                style={{ lineHeight: "80px" }}
-                variants={stagger}
+                className="text-[#F3F3F3] text-[44px] sm:text-4xl lg:text-[80px] font-extrabold leading-snug sm:leading-tight text-center max-w-none"
+                style={{ lineHeight: "1.2" }}
+                variants={fadeUp}
                 initial="hidden"
                 animate="visible"
               >
-                {`Where every LOAD `.split('').map((char, i) => (
-                  <motion.span key={i} variants={blurInTop} className="inline-block">
-                    {char === ' ' ? '\u00A0' : char}
-                  </motion.span>
-                ))}
-                <br />
-                {`hits the POINT.`.split('').map((char, i) => (
-                  <motion.span key={`line2-${i}`} variants={blurInTop} className="inline-block">
-                    {char === ' ' ? '\u00A0' : char}
-                  </motion.span>
-                ))}
+                Where every LOAD hits<br />
+                the POINT.
               </motion.h1>
-              <p className="text-white text-base sm:text-xl lg:text-2xl font-semibold leading-none">
+              <p className="text-white text-[24px] sm:text-xl lg:text-2xl font-semibold leading-none">
                 Your Freight. Our Focus. Always on POINT.
               </p>
             </motion.div>
@@ -122,7 +113,7 @@ export default function HomePage() {
             viewport={{ once: true, amount: 0.3 }}
           >
             <motion.p className="text-[#ED7426] text-sm sm:text-lg lg:text-xl font-semibold leading-normal" variants={fadeUp}>WHAT WE DO</motion.p>
-            <motion.h2 className="text-[#03395B] text-xl sm:text-3xl md:text-[48px] font-semibold leading-none text-center" variants={fadeUp}>
+            <motion.h2 className="text-[#03395B] text-[32px] sm:text-3xl md:text-[48px] font-semibold text-center" style={{ lineHeight: "32px" }} variants={fadeUp}>
               Over The Road Transportation Solutions
             </motion.h2>
           </motion.div>
@@ -138,7 +129,7 @@ export default function HomePage() {
 
           {/* Cards */}
           <motion.div
-            className="flex flex-col md:flex-row gap-5 w-full"
+            className="flex flex-col md:flex-row gap-16 md:gap-5 w-full"
             variants={stagger}
             initial="hidden"
             whileInView="visible"
@@ -151,11 +142,11 @@ export default function HomePage() {
                   <img src={imgShippers} alt="Shippers" className="absolute inset-0 w-full h-full object-cover" />
                 </div>
               </div>
-              <div className="flex flex-col gap-5">
-                <p className="text-[#03395B] text-xl sm:text-3xl md:text-[40px] font-semibold leading-normal">Shippers</p>
+              <div className="flex flex-col gap-5 items-center text-center md:items-start md:text-left">
+                <p className="text-[#03395B] text-[32px] sm:text-3xl md:text-[40px] font-semibold leading-normal">Shippers</p>
                 <Link
                   href="/shippers"
-                  className="self-start border border-[#444] text-[#444] text-sm font-medium px-5 py-2 rounded-full hover:bg-[#03395B] hover:text-white hover:border-[#03395B] transition-colors"
+                  className="border border-[#444] text-[#444] text-sm font-medium px-5 py-2 rounded-full hover:bg-[#03395B] hover:text-white hover:border-[#03395B] transition-colors"
                 >
                   READ MORE
                 </Link>
@@ -169,11 +160,11 @@ export default function HomePage() {
                   <img src={imgCarriers} alt="Carriers" className="absolute inset-0 w-full h-full object-cover" />
                 </div>
               </div>
-              <div className="flex flex-col gap-5">
-                <p className="text-[#03395B] text-xl sm:text-3xl md:text-[40px] font-semibold leading-normal">Carriers</p>
+              <div className="flex flex-col gap-5 items-center text-center md:items-start md:text-left">
+                <p className="text-[#03395B] text-[32px] sm:text-3xl md:text-[40px] font-semibold leading-normal">Carriers</p>
                 <Link
                   href="/carriers"
-                  className="self-start border border-[#444] text-[#444] text-sm font-medium px-5 py-2 rounded-full hover:bg-[#03395B] hover:text-white hover:border-[#03395B] transition-colors"
+                  className="border border-[#444] text-[#444] text-sm font-medium px-5 py-2 rounded-full hover:bg-[#03395B] hover:text-white hover:border-[#03395B] transition-colors"
                 >
                   READ MORE
                 </Link>
@@ -185,10 +176,10 @@ export default function HomePage() {
 
       {/* ══ ABOUT US ══════════════════════════════════════════════════ */}
       <section className="relative bg-[#ED7426] overflow-hidden">
-        <div className="max-w-[1280px] mx-auto px-5 py-16 md:py-24 flex flex-col md:grid md:grid-cols-2 gap-0">
+        <div className="max-w-[1280px] mx-auto px-5 py-16 md:py-24 flex flex-col md:grid md:grid-cols-2 gap-0 items-center justify-center">
           {/* Text column */}
           <motion.div
-            className="flex flex-col gap-10 justify-center"
+            className="flex flex-col gap-10 justify-center items-center text-center md:items-start md:text-left"
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
@@ -213,7 +204,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/about"
-              className="self-start bg-[#03395B] text-white text-sm font-medium px-7 py-3 rounded-lg h-[50px] flex items-center hover:bg-transparent hover:border hover:border-[#03395B] hover:text-white transition-colors"
+              className="w-full sm:w-auto bg-[#03395B] text-white text-sm font-medium px-7 py-3 rounded-lg h-[50px] flex items-center justify-center hover:bg-transparent hover:border hover:border-[#03395B] hover:text-white transition-colors"
             >
               KNOW MORE ABOUT US
             </Link>
@@ -232,7 +223,7 @@ export default function HomePage() {
         </motion.div>
 
         {/* Truck — visible on mobile, stacked below text */}
-        <div className="md:hidden w-full h-[260px] relative">
+        <div className="md:hidden w-full h-[400px] relative">
           <img src={imgTruck1} alt="Point Freight truck" className="absolute inset-0 w-full h-full object-cover" />
         </div>
       </section>
@@ -242,35 +233,35 @@ export default function HomePage() {
         <div className="max-w-[1280px] mx-auto px-5 flex flex-col gap-10">
           {/* Header row */}
           <motion.div
-            className="flex flex-col md:flex-row md:items-end md:justify-between w-full gap-6"
+            className="flex flex-col md:flex-row items-center justify-center md:items-end md:justify-between w-full gap-6 text-center md:text-left"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 items-center md:items-start">
               <p className="text-[#ED7426] text-xl font-semibold leading-normal">TALK WITH US</p>
               <h2 className="text-[#03395B] text-3xl sm:text-4xl md:text-[48px] font-semibold leading-tight max-w-[500px]">
                 Transportation Beyond Expectations
               </h2>
             </div>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 flex-shrink-0">
+            <div className="flex flex-col sm:flex-row items-center sm:items-center gap-3 flex-shrink-0 w-full sm:w-auto justify-center">
               <button
                 onClick={() => setQuoteOpen(true)}
-                className="border border-[#949494] flex items-center gap-2.5 px-3.5 py-3 rounded-lg hover:border-[#ED7426] transition-colors"
+                className="w-full sm:w-auto border border-[#949494] flex items-center justify-center gap-2.5 px-3.5 py-3 rounded-lg hover:border-[#ED7426] transition-colors"
               >
                 <Icon icon="solar:hamburger-menu-bold" className="w-6 h-6 text-[#ED7426] flex-shrink-0" />
                 <span className="text-[#444] text-sm font-medium">GET A FREIGHT QUOTE</span>
               </button>
               <Link
                 href="/contact"
-                className="bg-[#03395B] text-white text-sm font-medium px-7 py-3 h-[50px] rounded-lg border border-[#03395B] hover:bg-transparent hover:text-gray-500 transition-colors flex items-center"
+                className="w-full sm:w-auto bg-[#03395B] text-white text-sm font-medium px-7 py-3 h-[50px] rounded-lg border border-[#03395B] hover:bg-transparent hover:text-gray-500 transition-colors flex items-center justify-center"
               >
                 SEND A DIRECT MESSAGE
               </Link>
               <Link
                 href="/work-with-us"
-                className="bg-[#ED7426] text-white text-sm font-medium px-7 py-3 h-[50px] rounded-lg border border-[#ED7426] hover:bg-transparent hover:text-gray-500 transition-colors flex items-center"
+                className="w-full sm:w-auto bg-[#ED7426] text-white text-sm font-medium px-7 py-3 h-[50px] rounded-lg border border-[#ED7426] hover:bg-transparent hover:text-gray-500 transition-colors flex items-center justify-center"
               >
                 WORK WITH US
               </Link>

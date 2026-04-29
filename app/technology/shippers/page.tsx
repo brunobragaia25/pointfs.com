@@ -75,14 +75,14 @@ export default function ShippersTechnologyPage() {
           viewport={{ once: true }}
         >
           <motion.h2
-            className="text-[48px] font-semibold text-[#03395B] leading-tight max-w-[952px]"
+            className="text-[28px] md:text-[48px] font-semibold text-[#03395B] leading-tight max-w-[952px]"
             variants={fadeUp}
           >
             End-to-End Transportation Management That Maximizes Value-Add for
             Your Supply Chain
           </motion.h2>
           <motion.div
-            className="flex flex-col gap-6 text-2xl text-[#444] leading-[1.75] max-w-[1100px]"
+            className="flex flex-col gap-6 text-[16px] md:text-2xl text-[#444] leading-[1.75] max-w-[1100px]"
             variants={fadeUp}
           >
             <p>
@@ -114,15 +114,15 @@ export default function ShippersTechnologyPage() {
           viewport={{ once: true }}
         >
           <motion.h2
-            className="text-2xl sm:text-3xl md:text-[44px] font-semibold text-[#ED7426]"
-            style={{ lineHeight: "58px" }}
+            className="text-[28px] md:text-[44px] font-semibold text-[#ED7426]"
+            style={{ lineHeight: "38px" }}
             variants={fadeUp}
           >
             All-in-One freight Management: Quote, Book, Track 24/7/365 -
             Stress-free
           </motion.h2>
           <motion.p
-            className="text-2xl text-[#444] leading-[1.75]"
+            className="text-[16px] md:text-2xl text-[#444] leading-[1.75]"
             variants={fadeUp}
           >
             Check the status and location of your loads anytime, anywhere right
@@ -141,11 +141,11 @@ export default function ShippersTechnologyPage() {
           viewport={{ once: true }}
         >
           <div className="rounded-[20px] bg-white/20 backdrop-blur-[46px] shadow-[0px_0px_53.2px_0px_rgba(0,0,0,0.08)] p-3">
-            <div className="rounded-[12px] overflow-hidden bg-[#dbdbdb] h-[582px]">
+            <div className="rounded-[12px] overflow-hidden bg-[#dbdbdb] h-auto">
               <img
                 src={imgPlatform1}
                 alt="Platform dashboard screenshot"
-                className="w-full h-full object-contain"
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>
@@ -162,13 +162,13 @@ export default function ShippersTechnologyPage() {
           viewport={{ once: true }}
         >
           <motion.h2
-            className="text-2xl sm:text-3xl md:text-[44px] font-semibold text-[#ED7426] leading-[1.4]"
+            className="text-[28px] md:text-[44px] font-semibold text-[#ED7426] leading-[1.4] text-center md:text-left"
             variants={fadeUp}
           >
             Comprehensive analytics and performance reports
           </motion.h2>
           <motion.p
-            className="text-2xl text-[#444] leading-[1.75]"
+            className="text-[16px] md:text-2xl text-[#444] leading-[1.75] text-center md:text-left"
             variants={fadeUp}
           >
             We deliver the difference…. Technology and transparency are tailored
@@ -189,7 +189,7 @@ export default function ShippersTechnologyPage() {
         >
           <div className="rounded-[20px] bg-white/20 backdrop-blur-[46px] shadow-[0px_0px_53.2px_0px_rgba(0,0,0,0.08)] p-3">
             <div
-              className="rounded-[12px] overflow-hidden relative flex items-end justify-end h-[487px]"
+              className="rounded-[12px] overflow-hidden relative flex items-end justify-end h-auto"
               style={{
                 background:
                   "linear-gradient(253.2deg, #ED7326 7.92%, #FFA368 106.6%)",
@@ -198,12 +198,10 @@ export default function ShippersTechnologyPage() {
               <img
                 src={imgClientReport}
                 alt="Client report view"
-                className="object-contain absolute"
+                className="object-contain"
                 style={{
-                  width: "1165.5px",
-                  height: "441.5px",
-                  bottom: 0,
-                  right: 0,
+                  width: "100%",
+                  height: "auto",
                 }}
               />
             </div>
@@ -229,8 +227,7 @@ export default function ShippersTechnologyPage() {
               }}
             >
               <h2
-                className="text-3xl sm:text-4xl md:text-[54px] font-bold text-white text-center max-w-[1096px]"
-                style={{ lineHeight: "65px" }}
+                className="text-[32px] sm:text-4xl md:text-[54px] font-bold text-white text-center max-w-[1096px] leading-[40px] md:leading-[65px]"
               >
                 Looking for a Reliable Shipping &amp; Transportation Partner?
               </h2>

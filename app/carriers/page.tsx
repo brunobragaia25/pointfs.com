@@ -24,7 +24,7 @@ const stagger: Variants = {
 // ── Photo frame ────────────────────────────────────────────────────────
 function PhotoFrame({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="flex-shrink-0 w-full sm:w-[610px] h-[260px] sm:h-[480px] rounded-[20px] p-3 bg-white shadow-[0px_0px_53.2px_0px_rgba(0,0,0,0.15)]">
+    <div className="w-full h-[350px] rounded-[20px] p-3 bg-white shadow-[0px_0px_53.2px_0px_rgba(0,0,0,0.15)]">
       <div className="rounded-[12px] overflow-hidden w-full h-full">
         <img src={src} alt={alt} className="w-full h-full object-cover" />
       </div>
@@ -76,13 +76,13 @@ export default function CarriersPage() {
 
           <motion.div className="flex flex-col gap-6 flex-1 min-w-0" variants={stagger}>
             <motion.h2
-              className="text-[48px] font-semibold text-[#03395B] leading-tight"
+              className="text-[28px] md:text-[48px] font-semibold text-[#03395B] leading-tight text-center"
               variants={fadeUp}
             >
               Drive your Business Forward – FAST.
             </motion.h2>
             <motion.p
-              className="text-2xl text-[#444] leading-[1.75]"
+              className="text-[16px] text-[#444] leading-[1.75] text-center"
               variants={fadeUp}
             >
               Finding quality freight has never been easier. Partnering for
@@ -93,7 +93,7 @@ export default function CarriersPage() {
             <motion.div variants={fadeUp}>
               <Link
                 href="/carriers/partner"
-                className="inline-flex items-center gap-2.5 border border-[#949494] rounded-lg px-3.5 py-3 text-sm font-medium text-[#444] hover:border-[#CCCCCC] transition-colors"
+                className="w-full flex items-center justify-center gap-2.5 border border-[#949494] rounded-lg px-3.5 py-3 text-sm font-medium text-[#444] hover:border-[#CCCCCC] transition-colors"
               >
                 <Icon icon="solar:hamburger-menu-bold" className="w-6 h-6 text-[#03395B] flex-shrink-0" />
                 BECOME A PARTNER
@@ -107,7 +107,7 @@ export default function CarriersPage() {
         <div className="w-full h-px bg-[#D9D9D9]" />
       </div>
 
-      {/* ══ SECTION 2 — text left, image right ════════════════════════ */}
+      {/* ══ SECTION 2 — image first, then text ════════════════════════ */}
       <section className="bg-white">
         <motion.div
           className="max-w-[1280px] mx-auto px-5 py-20 flex flex-col md:flex-row items-center gap-16"
@@ -116,9 +116,13 @@ export default function CarriersPage() {
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
         >
-          <motion.div className="flex flex-col gap-6 flex-1 min-w-0" variants={stagger}>
+          <motion.div variants={fadeUp} className="w-full md:flex-shrink-0 order-first md:order-none">
+            <PhotoFrame src={imgHandshake} alt="Business partnership handshake" />
+          </motion.div>
+
+          <motion.div className="flex flex-col gap-6 flex-1 min-w-0 w-full" variants={stagger}>
             <motion.p
-              className="text-2xl text-[#444] leading-[1.75]"
+              className="text-[16px] text-[#444] leading-[1.75] text-center"
               variants={fadeUp}
             >
               Our platform is available online and through our mobile app
@@ -130,16 +134,12 @@ export default function CarriersPage() {
             <motion.div variants={fadeUp}>
               <Link
                 href="/carriers/partner"
-                className="inline-flex items-center gap-2.5 border border-[#949494] rounded-lg px-3.5 py-3 text-sm font-medium text-[#444] hover:border-[#CCCCCC] transition-colors"
+                className="w-full flex items-center justify-center gap-2.5 border border-[#949494] rounded-lg px-3.5 py-3 text-sm font-medium text-[#444] hover:border-[#CCCCCC] transition-colors"
               >
                 <Icon icon="solar:hamburger-menu-bold" className="w-6 h-6 text-[#03395B] flex-shrink-0" />
                 BECOME A PARTNER
               </Link>
             </motion.div>
-          </motion.div>
-
-          <motion.div variants={fadeUp} className="flex-shrink-0">
-            <PhotoFrame src={imgHandshake} alt="Business partnership handshake" />
           </motion.div>
         </motion.div>
       </section>

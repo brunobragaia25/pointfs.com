@@ -120,7 +120,7 @@ export default function AboutPage() {
       <section className="bg-white py-24 pb-12">
         <div className="max-w-[1280px] mx-auto px-5 flex flex-col gap-10">
           <motion.h2
-            className="text-[#ED7426] text-2xl sm:text-3xl md:text-[36px] font-semibold leading-[43px] w-full md:w-[522px]"
+            className="text-[#ED7426] text-[32px] sm:text-3xl md:text-[36px] font-semibold leading-[43px] w-full text-center"
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
@@ -166,10 +166,10 @@ export default function AboutPage() {
           DELIVERING CONFIDENCE
       ══════════════════════════════════════════ */}
       <section className="bg-white py-12">
-        <div className="max-w-[1280px] mx-auto px-5 flex flex-col gap-10">
+        <div className="max-w-[1280px] mx-auto px-5 flex flex-col gap-5 md:gap-10">
           {/* Section heading */}
           <motion.div
-            className="text-[#ED7426] text-[36px] font-semibold leading-[1.4]"
+            className="text-[#ED7426] text-[28px] md:text-[36px] font-semibold leading-[1.4] text-center"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -185,7 +185,7 @@ export default function AboutPage() {
           </div>
 
           {/* Row 1: truck left + text right */}
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-center">
+          <div className="flex flex-col md:flex-row gap-5 md:gap-16 items-center md:items-start">
             <motion.div
               className="w-full sm:w-[588px] h-[300px] sm:h-[640px] rounded-[16px] overflow-hidden flex-shrink-0 relative"
               initial={{ opacity: 0, x: -40 }}
@@ -196,7 +196,7 @@ export default function AboutPage() {
               <img src={imgTruckLeft} alt="Point Freight truck" className="absolute inset-0 w-full h-full object-cover" />
             </motion.div>
             <motion.div
-              className="flex-1 flex flex-col gap-10 text-[#444] text-xl font-normal leading-[1.75]"
+              className="flex-1 flex flex-col gap-10 text-[#444] text-base md:text-xl font-normal leading-[1.75] text-center md:text-left"
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
@@ -212,9 +212,9 @@ export default function AboutPage() {
           </div>
 
           {/* Row 2: text left + image right */}
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-center">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center md:items-start">
             <motion.div
-              className="flex-1 flex flex-col gap-7 text-[#444] text-xl font-normal leading-[1.75]"
+              className="flex-1 flex flex-col gap-7 text-[#444] text-base md:text-xl font-normal leading-[1.75] text-center md:text-left order-last md:order-none"
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
@@ -231,13 +231,13 @@ export default function AboutPage() {
               </p>
             </motion.div>
             <motion.div
-              className="flex-1 h-[640px] rounded-[16px] overflow-hidden flex-shrink-0 relative bg-[#D9D9D9]"
+              className="w-full md:flex-1 h-[300px] sm:h-[640px] rounded-[16px] overflow-hidden relative bg-[#D9D9D9]"
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
               viewport={{ once: true, amount: 0.3 }}
             >
-              <img src={imgPersonRight1} alt="Logistics professional" className="absolute inset-0 w-full h-full object-cover" />
+              <img src={imgPersonRight1} alt="Logistics professional" className="w-full h-full object-cover" />
             </motion.div>
           </div>
         </div>
@@ -305,9 +305,9 @@ function FeatureCard({
           <Icon icon={icon} className="absolute w-6 h-6 text-[#03395B]" style={{ top: "20px", left: "20px" }} />
         </div>
 
-        <h3 className="text-[#03395B] text-[28px] font-semibold leading-[1.4]">{title}</h3>
+        <h3 className="text-[#03395B] text-[20px] font-semibold leading-[1.4]">{title}</h3>
       </div>
-      <div className="text-[#444] text-xl font-medium leading-[1.4] space-y-4">{body}</div>
+      <div className="text-[#444] text-base font-medium leading-[1.4] space-y-4">{body}</div>
     </div>
   );
 }

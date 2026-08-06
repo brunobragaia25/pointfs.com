@@ -8,12 +8,35 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const siteUrl = "https://www.pointfs.com";
+const title = "Point Freight Systems | Where every LOAD hits the POINT.";
+const description =
+  "Point Freight Systems delivers comprehensive ground transportation solutions. Your Freight. Our Focus. Always on POINT.";
+
 export const metadata: Metadata = {
-  title: "Point Freight Systems | Where every LOAD hits the POINT.",
-  description:
-    "Point Freight Systems delivers comprehensive ground transportation solutions. Your Freight. Our Focus. Always on POINT.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: title,
+    template: "%s | Point Freight Systems",
+  },
+  description,
   icons: {
     icon: "/favicon.ico",
+  },
+  openGraph: {
+    title,
+    description,
+    url: siteUrl,
+    siteName: "Point Freight Systems",
+    images: [{ url: "/images/image-hero.png", width: 1200, height: 630 }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/images/image-hero.png"],
   },
 };
 

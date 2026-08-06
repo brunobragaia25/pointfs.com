@@ -156,7 +156,7 @@ export default function ShippersPage() {
           animate="visible"
         >
           <motion.h1
-            className="text-[32px] sm:text-4xl md:text-[64px] font-semibold text-white leading-tight max-w-[860px]"
+            className="text-[32px] sm:text-4xl md:text-[64px] font-semibold text-white max-w-[860px] leading-[44px] md:leading-[65px]"
             variants={fadeUp}
           >
             Linking Every Load, Every Road, Reliable Carriers

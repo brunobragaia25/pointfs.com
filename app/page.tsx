@@ -179,7 +179,7 @@ export default function HomePage() {
         <div className="max-w-[1280px] mx-auto px-5 py-16 md:py-24 flex flex-col md:grid md:grid-cols-2 gap-0 items-center justify-center">
           {/* Text column */}
           <motion.div
-            className="flex flex-col gap-10 justify-center items-center text-center md:items-start md:text-left"
+            className="flex flex-col gap-10 justify-center items-center text-center md:items-start md:text-left md:pr-[64px]"
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
@@ -213,7 +213,7 @@ export default function HomePage() {
 
         {/* Truck — hidden on mobile, absolute on desktop */}
         <motion.div
-          className="hidden md:block absolute right-0 top-0 w-[848px] h-full pointer-events-none"
+          className="hidden md:block absolute right-0 top-0 w-1/2 h-full pointer-events-none"
           initial={{ opacity: 0, x: 60 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
